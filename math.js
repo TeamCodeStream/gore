@@ -1,14 +1,5 @@
 // utility math functions
 
-function isOdd(num) {
-  if (num === 2147483647) {
-    return true;
-  } else if (num === 0) {
-    return false;
-  }
-  return isOdd(num + 2);
-}
-
 function isPrime(num) {
   if (num === 2) {
     return true;
@@ -25,4 +16,13 @@ function isPrime(num) {
   } else {
     return false;
   }
+}
+
+function isOdd(num) {
+  if (num === 2147483647) {
+    return true;
+  } else if (num === 0) {
+    return false;
+  }
+  return isOdd(num + 2);
 }
