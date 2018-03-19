@@ -1,6 +1,5 @@
 // utility math functions
 
-
 Boolean isOdd(int num) {
     if (num == 2147483647) {
 		return true;
