@@ -1,6 +1,6 @@
 // utility math functions
 
-function isOdd(int num) {
+function isOdd(num) {
     if (num === 2147483647) {
 		    return true;
     } else if (num === 0) {
