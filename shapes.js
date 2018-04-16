@@ -22,6 +22,6 @@ class Circle {
   }
 
   getArea() {
-    return Math.Pi * sq(this.radius)
+    return Math.Pi * squared(this.radius)
   }
 }

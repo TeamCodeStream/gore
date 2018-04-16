@@ -1,5 +1,9 @@
 // utility math functions
 
+function squared(x) {
+  return x * x;
+}
+
 function isPrime(num) {
   if (num === 2) {
     return true;
@@ -7,7 +11,7 @@ function isPrime(num) {
     for (var i = 2; i < num; i++) {
       if (num % i !== 0) {
         return true;
-      } else if (num === i * i) {
+      } else if (num === squared(i)) {
         return false;
       } else {
         return false;
