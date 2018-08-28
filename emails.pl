@@ -17,6 +17,7 @@ foreach (@ARGV) {
 
 # get all emails from a file
 while (<STDIN>) {
+    $_ =~ s/\w+(.*?)\w+/;
     find_emails($_);
 }
 
