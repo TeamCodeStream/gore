@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+
+#desc# Standard interface to CodeStream's TeamCity build process for the VS Code Extension
+
+import os
+import sys
+
+sys.path.append(os.environ['DT_TOP'] + "/lib")
+import devTools
+from sysUtils import dumpDict, shellExecNoBuffer, someValueOrNone
+from buildUtils import *
+
+supplementalRepos = ['misc']
+allRepos = supplementalRepos + ['gore']
+assetExtensionList = ['info', 'tgz']
+
+args = parseStandardBuildArgs()
+dt = devTools.devTools()
+buildData = buildInit(__file__, dt, args)
+os.chdir(buildData['sandboxTop'])
+if args.verbose: print("current directory is", buildData['sandboxTop'])
+if args.debug: dumpDict(buildData, None, buildData)
+
+if args.update_repos:
+	for repo in supplementalRepos:
+		print("git pull --rebase origin:", repo)
+		shellExecNoBuffer("git pull --rebase origin",
+			abortOnFail = True,
+			captureOutput = False,
+			workingDir = os.environ['GORE_SANDBOX'] + "/" + repo)
+
+if args.action == 'prep':
+	buildstepPrep(args)
+	exit(0)
+
+if args.action in ['clean','destroy']:
+	buildstepGeneric(args, cmd = "npm run clean:ci", workingDir = buildData['sandboxTop'])
+
+if args.action == 'destroy':
+	buildstepDestroy(args, buildData, repoList = allRepos)
+
+# for a build:
+#   npm run build
+#   create generic info file (no build number)
+#   npm run pack (create the vsix with a generic name - no build number)
+#   create build number specific info file (includes md5sum of vsix)
+#   rename generic vsix to build specific vsix
+pkgInfo = None
+vsixFile = None
+infoFile = None
+if args.action in ['build','info','tag','release']:
+	if args.action == 'build':
+		# build the extension
+		shellExecNoBuffer("npm run bundle", abortOnFail = True, printCmd = args.verbose)
+
+	# create asset info file (w/o md5sum)
+	pkgInfo = getPackageInfo(buildData = buildData, getRepoCommitDir = buildData['sandboxTop'])
+	genericName = pkgInfo['name'] + "-" + pkgInfo['version']
+	genericVsixFile = genericName + ".tgz"
+	genericInfoFile = genericName + ".info"
+	vsixFile = pkgInfo['localAssetFilePrefix'] + ".tgz"
+	infoFile = pkgInfo['localAssetFilePrefix'] + ".info"
+	for repo in supplementalRepos:
+		g = gitCS.gitCS(os.environ['GORE_SANDBOX'] + "/" + repo)
+		pkgInfo['repoCommitId'][repo] = g.getCommitId()
+		# pkgInfo['repoCommitId'][repo] = gitGetCommitId(workingDir = os.environ['GORE_SANDBOX'] + "/" + repo)
+	pkgInfo['assetsMD5'][vsixFile] = "0"
+	dumpDict(pkgInfo, genericInfoFile)
+	if args.verbose: print("created preliminary info file", genericInfoFile)
+
+	if args.action == 'build':
+		# pack the extenstion (uses genericInfoFile, creates genericVsixFile)
+		shellExecNoBuffer("npm run pack", abortOnFail = True, printCmd = args.verbose)
+		md5sum = dt.md5Hash(genericVsixFile)
+		pkgInfo['assetsMD5'][vsixFile] = md5sum
+		dumpDict(pkgInfo, infoFile)
+		os.unlink(genericInfoFile)
+		os.rename(genericVsixFile, vsixFile)
+		if args.verbose:
+			dumpDict(pkgInfo, None, "packageInfo:")
+			shellExecNoBuffer("ls -l " + pkgInfo['localAssetFilePrefix'] + ".*", workingDir = buildData['sandboxTop'], printCmd = True)
+
+if args.action == 'citest':
+	buildstepGeneric(args, cmd = "echo Testing not configured", workingDir = buildData['sandboxTop'])
+
+if args.action == 'publish':
+	publishArtifacts(args, buildData, assetExtensionList)
+
+if args.action in ['tag']:
+	# assumes assets in the workingDir are those we want to publish
+	if not os.path.exists(vsixFile):
+		print("asset file not found:", vsixFile)
+		exit(1)
+	applyTagToRepos(os.environ['GORE_SANDBOX'], "gore-" + pkgInfo['version'], pkgInfo['repoCommitId'])
+
+if args.action == 'release':
+	updatePackageVersion(buildData['sandboxTop'] + "/package.json", "develop", pkgInfo['version'], bumpLevel = 'patch')
+	# buildstepGeneric(args, cmd = "vscb-publish-assets-to-cloudfront --asset-env prod", workingDir = buildData['sandboxTop'])
+	# buildstepGeneric(args, cmd = "vsce publish --packagePath " + vsixFile, workingDir = buildData['sandboxTop'])
