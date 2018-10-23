@@ -96,6 +96,6 @@ if args.action in ['tag']:
 	applyTagToRepos(os.environ['GORE_SANDBOX'], "gore-" + pkgInfo['version'], pkgInfo['repoCommitId'])
 
 if args.action == 'release':
-	updatePackageVersion(buildData['sandboxTop'] + "/package.json", "develop", pkgInfo['version'], bumpLevel = 'patch')
+	updatePackageVersion(buildData['sandboxTop'] + "/package.json", "sandboxify", pkgInfo['version'], bumpLevel = 'patch')
 	# buildstepGeneric(args, cmd = "vscb-publish-assets-to-cloudfront --asset-env prod", workingDir = buildData['sandboxTop'])
 	# buildstepGeneric(args, cmd = "vsce publish --packagePath " + vsixFile, workingDir = buildData['sandboxTop'])
