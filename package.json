@@ -1,6 +1,6 @@
 {
   "name": "gore",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "description": "test package",
   "main": "index.js",
   "scripts": {
@@ -17,4 +17,3 @@
   },
   "homepage": "https://github.com/teamcodestream/gore#readme"
 }
-
