@@ -1,2 +1,19 @@
-{  "name": "gore",  "version": "1.0.1",
-  "description": "test package",  "main": "index.js",  "scripts": {    "test": "echo \"Error: no test specified\" && exit 1"  },  "repository": {    "type": "git",    "url": "git+https://github.com/teamcodestream/gore.git"  },  "author": "",  "license": "ISC",  "bugs": {    "url": "https://github.com/teamcodestream/gore/issues"  },  "homepage": "https://github.com/teamcodestream/gore#readme"}
+{
+  "name": "gore",
+  "version": "1.0.0",
+  "description": "test package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teamcodestream/gore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/teamcodestream/gore/issues"
+  },
+  "homepage": "https://github.com/teamcodestream/gore#readme"
+}
