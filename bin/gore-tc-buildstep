@@ -61,11 +61,12 @@ if args.action in ['build','info','tag','release']:
 	vsixFile = pkgInfo['localAssetFilePrefix'] + ".tgz"
 	infoFile = pkgInfo['localAssetFilePrefix'] + ".info"
 	for repo in supplementalRepos:
-		g = gitCS.gitCS(os.environ['GORE_SANDBOX'] + "/" + repo)
+		g = gitCS.gitCS(os.environ['GORE_SANDBOX'] + "/" + repo, verbose = True)
 		pkgInfo['repoCommitId'][repo] = g.getCommitId()
 		# pkgInfo['repoCommitId'][repo] = gitGetCommitId(workingDir = os.environ['GORE_SANDBOX'] + "/" + repo)
 	pkgInfo['assetsMD5'][vsixFile] = "0"
-	dumpDict(pkgInfo, genericInfoFile)
+	# dumpDict(pkgInfo, genericInfoFile)
+	dumpDict(pkgInfo, infoFile)
 	if args.verbose: print("created preliminary info file", genericInfoFile)
 
 	if args.action == 'build':
@@ -88,8 +89,9 @@ if args.action == 'publish':
 
 if args.action in ['tag']:
 	# assumes assets in the workingDir are those we want to publish
-	if not os.path.exists(vsixFile):
-		print("asset file not found:", vsixFile)
+	# dumpDict(pkgInfo)
+	if not os.path.exists(infoFile):
+		print("asset file not found:", infoFile)
 		exit(1)
 	applyTagToRepos(os.environ['GORE_SANDBOX'], "gore-" + pkgInfo['version'], pkgInfo['repoCommitId'])
 
