@@ -1,0 +1,5 @@
+SB_TYPE=gore
+SB_PREFIX=GORE
+GIT_ORIGIN=git@github.com:teamcodestream/gore
+SB_PROJECT_PATH=gore
+#SB_DEPS=a:b:c
