@@ -1,5 +1,6 @@
 #!/bin/bash
 
+[ "$1" == setBuildNumber ] && echo "##teamcity[buildNumber 'gore-`cat version`+$BUILD_NUMBER']" && exit 0
 [ "$1" == ok ] && echo "success" && exit 0
 echo "failed"
 exit 1
