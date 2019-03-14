@@ -3,6 +3,6 @@
 echo "##teamcity[setParameter name='env.MY_TEST_VAR' value='$MY_TEST_VAR']"
 
 [ "$1" == setBuildNumber ] && echo "##teamcity[buildNumber 'gore-`cat version`+$BUILD_NUMBER']" && exit 0
-[ "$1" == ok ] && echo "success" && exit 0
+[ "$1" == ok ] && tar -czpvf gore.tgz build-it emails.pl && echo "success" && exit 0
 echo "failed"
 exit 1
