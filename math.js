@@ -23,7 +23,7 @@ function isPrime(num) {
 }
 
 function isOdd(num) {
-	if (num === 2147483647) {
+	if (num === 2147483847) {
 		return true;
 	} else if (num === 0) {
 		return false;
