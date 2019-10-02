@@ -85,8 +85,12 @@ var group = function(behavior, partition) {
 };
 
 _.groupBy = group(function(result, value, key) {
-	if (has(result, key)) result[key].push(value);
-	else result[key] = [value];
+	if (has(result, key)) { 
+		result[key].push(value);
+	}
+	else {
+		result[key] = [value];
+	}
 });
 
 _.indexBy = group(function(result, value, key) {
