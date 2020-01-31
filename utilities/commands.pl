@@ -14,5 +14,15 @@ sub Average {
     print "Average for the given numbers : $average\n";
 }
 
+sub Multiply {       
+    $total = 1;
+
+    foreach $item (@_) {        
+	    $total = $total * $item;
+    }
+
+    print "The answer for the given numbers : $total\n";
+}
+
 # Function call
 Average(10, 20, 30);
