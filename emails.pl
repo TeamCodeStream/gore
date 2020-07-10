@@ -13,6 +13,7 @@ sub find_emails {
 # get all emails from command-line args
 foreach (@ARGV) {
     find_emails($_);
+    // another change
 }
 
 # get all emails from a file
