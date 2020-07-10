@@ -17,11 +17,13 @@ class Square extends Rectangle {
 
 class Circle {
   constructor(circumference, radius) {
+    // change 1
     this.circumference = circumference
     this.radius = radius
   }
 
   getArea() {
+    // change 2
     return Math.Pi * squared(this.radius)
   }
 }
