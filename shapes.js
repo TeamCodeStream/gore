@@ -12,6 +12,7 @@ class Rectangle {
 class Square extends Rectangle {
   constructor(x) {
     super(x, x)
+    // more changes
   }
 }
 
