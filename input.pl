@@ -2,6 +2,8 @@ while (<STDIN>) {
     process(trim($_));
 }
 
+#stuffs
+
 sub process() {
     my $url = shift;
     my $html = qx{curl --silent $url};
