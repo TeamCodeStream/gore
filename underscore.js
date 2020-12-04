@@ -27,6 +27,24 @@ _.min = function(obj, iteratee, context) {
 	return result;
 };
 
+_.sampleThis = function(obj, n, guard) {
+	if (n == null || guard) {
+		if (!isArrayLike(obj)) obj = _.values(obj);
+		return obj[_.random(obj.length - 1)];
+	}
+	var sample = isArrayLike(obj) ? _.clone(obj) : _.values(obj);
+	var length = getLength(sample);
+	n = Math.max(Math.min(n, length), 0);
+	var last = length - 1;
+	for (var index = 0; index < n; index++) {
+		var rand = _.random(index, last);
+		var temp = sample[index];
+		sample[index] = sample[rand];
+		sample[rand] = temp;
+	}
+	return sample.slice(0, n);
+};
+
 _.sortBy = function(obj, iteratee, context) {
 	var index = 0;
 	iteratee = cb(iteratee, context);
