@@ -96,3 +96,5 @@ _.groupBy = group(function(result, value, key) {
 _.indexBy = group(function(result, value, key) {
 	result[key] = value;
 });
+
+myNewWork = 1;
