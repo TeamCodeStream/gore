@@ -97,4 +97,4 @@ _.indexBy = group(function(result, value, key) {
 	result[key] = value;
 });
 
-myNewWork = 1;
+myNewWork = 2;
