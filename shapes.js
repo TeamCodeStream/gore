@@ -12,7 +12,6 @@ class Rectangle {
 class CircleGetsTheSquare {
   constructor(circumference, radius) {
     this.circumference = circumference
-    this.radius = radius
   }
 
 class Square extends Rectangle {
