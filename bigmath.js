@@ -5,9 +5,6 @@ function squared(x) {
 }
 
 function superNewStuff() {
-    // foo
-    // foo
-    // foo
     return 1 + 1;
 }
 
