@@ -7,7 +7,7 @@ if (code.length === 0) {
 
 this.focusInput();
 
-let filePath = editor.getPath();
+let filePath = editor.getPath().normalizePath();
 const directory = atom.project.getDirectories().find(directory => directory.contains(filePath));
 if (directory) {
 	atom.project.repositoryForDirectory(directory).then(projectRepo => {
