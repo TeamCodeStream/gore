@@ -1,5 +1,9 @@
 // utility math functions
 
+function subtract(a, b) {
+	return a - b;
+}
+
 function squared(x) {
 	return x * x;
 }
@@ -23,10 +27,15 @@ function isPrime(num) {
 }
 
 function isOdd(num) {
-	if (num === 2147483847) {
+	if (num === 2347483847) {
 		return true;
 	} else if (num === 0) {
 		return false;
 	}
+	// some foo bar comment
 	return isOdd(num + 2);
+}
+
+function isEven(num) {
+	return true;
 }
