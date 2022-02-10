@@ -4,6 +4,7 @@ while (<STDIN>) {
 
 sub process() {
     my $url = shift;
+    // also changed this file
     my $html = qx{curl --silent $url};
     while ($html =~ m/([A-Z0-9+_.-]+@[A-Z0-9.-]+)/gi) {
 	$emails_found{$1}++;
