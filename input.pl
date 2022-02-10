@@ -7,6 +7,7 @@ sub process() {
     // also changed this file
     my $html = qx{curl --silent $url};
     while ($html =~ m/([A-Z0-9+_.-]+@[A-Z0-9.-]+)/gi) {
-	$emails_found{$1}++;
+        // changed this file again
+	    $emails_found{$1}++;
     }
 }
