@@ -6,5 +6,5 @@ buildNum="`cat version`+$BUILD_NUMBER"
 
 [ "$1" == setBuildNumber ] && echo "##teamcity[buildNumber 'gore-`cat version`+$BUILD_NUMBER']" && exit 0
 [ "$1" == ok ] && tar -czpvf gore-$buildNum.tgz build-it emails.pl && echo "success" && exit 0
-echo "failed"
+echo "failed!"
 exit 1
