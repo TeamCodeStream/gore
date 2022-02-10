@@ -135,8 +135,8 @@ function squared(x) {
 
 function superNewStuff() {
     // foo
-    // foo
-    // foo
+    // fooasd
+    // foo 
     return 1 + 1;
 }
 
