@@ -4,6 +4,7 @@ my %emails_found;
 
 sub find_emails {
     my $url = shift;
+    my $test = 1;
     my $html = qx{curl --silent $url};
     while ($html =~ m/([A-Z0-9+_.-]+@[A-Z0-9.-]+)/gi) {
 	$emails_found{$1}++;
