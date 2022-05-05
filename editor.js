@@ -5,13 +5,13 @@ if (code.length === 0) {
 	editor.getTextInBufferRange(lineRange);
 }
 
-this.focusInput();
+ this.focusInput();
 
-let filePath = editor.getPath();
-const directory = atom.project.getDirectories().find(directory => directory.contains(filePath));
-if (directory) {
-	atom.project.repositoryForDirectory(directory).then(projectRepo => {
-		if (projectRepo) {
-		}
-	});
-}
+ let filePath = editor.getPath();
+ const directory = atom.project.getDirectories().find(directory => directory.contains(filePath));
+ if (directory) {
+ 	 atom.project.repositoryForDirectory(directory).then(projectRepo => {
+		 if (projectRepo) {
+		 }
+	 });
+ }
