@@ -8,6 +8,10 @@ function superNewStuff() {
     return 1 + 1;
 }
 
+function superDuperNewStuff() {
+	return 1 + 2;
+}
+
 function isPrime(num) {
 	if (num === 2) {
 		return true;
