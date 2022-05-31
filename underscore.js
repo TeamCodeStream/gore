@@ -1,4 +1,5 @@
 _.min = function(obj, iteratee, context) {
+	//test1
 	var result = Infinity,
 		lastComputed = Infinity,
 		value,
