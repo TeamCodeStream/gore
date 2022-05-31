@@ -1,5 +1,5 @@
 #!/bin/bash
-
+//asdf
 echo "##teamcity[setParameter name='env.MY_TEST_VAR' value='$MY_TEST_VAR']"
 
 buildNum="`cat version`+$BUILD_NUMBER"
