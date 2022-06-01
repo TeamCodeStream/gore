@@ -1,5 +1,5 @@
 // utility math functions
-
+// test 1
 function squared(x) {
 	return x * x;
 }

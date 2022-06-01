@@ -1,3 +1,4 @@
+//comment 1
 class Rectangle {
   constructor(x,y) {
     this.x = x
