@@ -2,7 +2,7 @@
 
 import argparse
 
-parser = argparse.ArgumentParser(description='Do some more work')
+parser = argparse.ArgumentParser(description='Do some moar work')
 parser.add_argument('--debug', action='store_true', default=False, help='show debugging output')
 parser.add_argument('--it', action='store_true', default=False, help="work it")
 args = parser.parse_args()
