@@ -11,5 +11,5 @@ if not args.it:
     parser.print_help()
     exit(1)
 
-print("work work work....all I do is work.")
+print("work work work....all I do is work!")
 exit(0)
