@@ -1,4 +1,5 @@
 // utility math functions
+// comment 
 
 function squared(x) {
 	return x * x;
