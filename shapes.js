@@ -25,3 +25,15 @@ class Circle {
     return Math.Pi * squared(this.radius)
   }
 }
+
+class Trapezoid {
+  constructor(a, b, height) {
+    this.a = a;
+    this.b = b;
+    this.height = height;
+  }
+
+  getArea() {
+      return .5 * (a + b) * h;
+  }
+}

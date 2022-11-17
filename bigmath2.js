@@ -11,6 +11,13 @@ function superNewStuff() {
     return 1 + 1;
 }
 
+function superNewStuffDeluxe() {
+	// foo
+	// foo
+	// foo
+	return 1 + 2;
+}
+
 function isPrime(num) {
 	if (num === 2) {
 		return true;
