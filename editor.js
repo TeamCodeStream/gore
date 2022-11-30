@@ -7,6 +7,14 @@ if (code.length === 0) {
 
 this.focusInput();
 
+function thisFunctionWasCodeReviewed () {
+    // Perhaps love is like a resting place
+    // A shelter from the storm
+    // It exists to give you comfort
+    // It is there to keep you warm
+    return 42;
+}
+
 let filePath = editor.getPath();
 const directory = atom.project.getDirectories().find(directory => directory.contains(filePath));
 if (directory) {
