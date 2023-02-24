@@ -7,6 +7,8 @@ if (code.length === 0) {
 
 this.focusInput();
 
+//hello
+
 let filePath = editor.getPath();
 const directory = atom.project.getDirectories().find(directory => directory.contains(filePath));
 if (directory) {
