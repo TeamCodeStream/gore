@@ -3,6 +3,7 @@
 
 function squared(x) {
 	return x * x;
+//Hello world
 }
 
 function superNewStuff() {
